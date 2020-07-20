@@ -1,6 +1,6 @@
 package edu.cnm.deepdive.imgurbrowser.model;
 
-import android.media.Image;
+
 import android.nfc.Tag;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
