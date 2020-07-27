@@ -34,23 +34,30 @@ public class GalleryImageAdapter extends ArrayAdapter<Image> {
 
   private View initView(int position, View convertView, ViewGroup parent) {
 
-    if(convertView == null) {
+    if (convertView == null) {
       convertView = LayoutInflater.from(getContext()).inflate(
           R.layout.custom_gallery_search_spinner_item, parent, false
       );
     }
-    ImageView imageview = convertView.findViewById(R.id.custom_spinner_image);
+    ImageView imageView = convertView.findViewById(R.id.custom_spinner_image);
     TextView title = convertView.findViewById(R.id.custom_spinner_title);
     TextView description = convertView.findViewById(R.id.custom_spinner_description);
     TextView url = convertView.findViewById(R.id.custom_spinner_url);
 
     Image currentItem = getItem(position);
 
-    if (currentItem != null) {
-      Picasso.get().load(currentItem.getUrl()).into(imageview);
-      title.setText(currentItem.getTitle());
-      description.setText(currentItem.getDescription());
-      url.setText(currentItem.getUrl());
+    if (currentItem.getUrl() != null) {
+      if (position == 0) {
+        Picasso.get().load(R.drawable.gallery).into(imageView);
+      } else {
+        Picasso.get().load(currentItem.getUrl()).into(imageView);
+      }
+      if (currentItem.getTitle() != null) {
+        title.setText(currentItem.getTitle());
+      }
+      if (currentItem.getDescription() != null) {
+        description.setText(currentItem.getDescription());
+      }
     }
 
     return convertView;
